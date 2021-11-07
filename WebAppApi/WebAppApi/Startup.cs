@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAppApi.Data;
 
 namespace WebAppApi
 {
@@ -28,6 +30,11 @@ namespace WebAppApi
         {
 
             services.AddControllers();
+            //Cau hinh cho biet su dung co so du lieu nao va file context
+            services.AddDbContext<MyBDContext>(option => {
+                option.UseSqlServer(Configuration.GetConnectionString("MyDB"));
+            });
+            //Cau hinh cho swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAppApi", Version = "v1" });
