@@ -11,7 +11,6 @@ D:\webapi\WebAppApi\WebAppApi\bin\Debug\net5.0\Microsoft.OpenApi.dll
 D:\webapi\WebAppApi\WebAppApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\webapi\WebAppApi\WebAppApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\webapi\WebAppApi\WebAppApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\webapi\WebAppApi\WebAppApi\obj\Debug\net5.0\WebAppApi.csproj.AssemblyReference.cache
 D:\webapi\WebAppApi\WebAppApi\obj\Debug\net5.0\WebAppApi.GeneratedMSBuildEditorConfig.editorconfig
 D:\webapi\WebAppApi\WebAppApi\obj\Debug\net5.0\WebAppApi.AssemblyInfoInputs.cache
 D:\webapi\WebAppApi\WebAppApi\obj\Debug\net5.0\WebAppApi.AssemblyInfo.cs
@@ -133,3 +132,5 @@ D:\webapi\WebAppApi\WebAppApi\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.Wo
 D:\webapi\WebAppApi\WebAppApi\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\webapi\WebAppApi\WebAppApi\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\webapi\WebAppApi\WebAppApi\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+D:\webapi\WebAppApi\WebAppApi\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\webapi\WebAppApi\WebAppApi\obj\Debug\net5.0\WebAppApi.csproj.AssemblyReference.cache

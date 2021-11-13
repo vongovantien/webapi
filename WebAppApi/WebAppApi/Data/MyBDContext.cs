@@ -14,9 +14,9 @@ namespace WebAppApi.Data
         }
         #region DbSet
         public DbSet<Hanghoa> Hanghoas { get; set; }
-        public DbSet<DonHang> donHangs { get; set; }
-        public DbSet<Loai> loais { get; set; }
-        public DbSet<ChiTietDonHang> chiTietDonHangs { get; set; }
+        public DbSet<DonHang> DonHangs { get; set; }
+        public DbSet<Loai> Loais { get; set; }
+        public DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
      
         #endregion
 
@@ -25,28 +25,28 @@ namespace WebAppApi.Data
 
             modelBuilder.Entity<DonHang>(e => { 
                 e.ToTable("DonHang");
-                e.HasKey(s => s.maDonhang);
-                e.HasIndex(s => s.maDonhang).IsUnique();
-                e.Property(s => s.maDonhang).IsRequired();
-                e.Property(s => s.ngayDatHang).HasDefaultValueSql("getutcdate()");
-                e.Property(e => e.maDonhang).ValueGeneratedOnAdd();
+                e.HasKey(s => s.MaDonhang);
+                e.HasIndex(s => s.MaDonhang).IsUnique();
+                e.Property(s => s.MaDonhang).IsRequired();
+                e.Property(s => s.NgayDatHang).HasDefaultValueSql("getutcdate()");
+                e.Property(e => e.MaDonhang).ValueGeneratedOnAdd();
             });
             modelBuilder.Entity<Hanghoa>(e => { 
-                e.Property(s => s.tenHangHoa).IsRequired().HasMaxLength(50); 
+                e.Property(s => s.TenHangHoa).IsRequired().HasMaxLength(50); 
             });
 
             modelBuilder.Entity<ChiTietDonHang>(e => {
                 e.ToTable("ChiTietDonHang");
-                e.HasKey(s => new { s.maDonhang, s.maHangHoa });
+                e.HasKey(s => new { s.MaDonhang, s.MaHangHoa });
 
-                e.HasOne(s => s.donHang)
-                .WithMany(s => s.chiTietDonHangs)
-                .HasForeignKey(s => s.maDonhang)
+                e.HasOne(s => s.DonHang)
+                .WithMany(s => s.ChiTietDonHangs)
+                .HasForeignKey(s => s.MaDonhang)
                 .HasConstraintName("FK_CTDH_DonHang");
 
-                e.HasOne(s => s.hangHoa)
-                   .WithMany(s => s.chiTietDonHangs)
-                   .HasForeignKey(s => s.maHangHoa)
+                e.HasOne(s => s.HangHoa)
+                   .WithMany(s => s.ChiTietDonHangs)
+                   .HasForeignKey(s => s.MaHangHoa)
                    .HasConstraintName("FK_CTDH_HangHoa");
             });
         }

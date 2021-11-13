@@ -7,15 +7,15 @@ namespace WebAppApi.Models
 {
     public class Hanghoa
     {
-        internal Guid maHangHoa;
+        internal int maHangHoa;
 
-        public string name { get; set; }
-        public double donGia { get; set; }
+        public string Name { get; set; }
+        public double DonGia { get; set; }
     }
 
     public class Hanghoa1 : Hanghoa
     {
-        public Guid maHangHoa { get; set; }
+        public int MaHangHoa { get; set; }
 
     }
 }

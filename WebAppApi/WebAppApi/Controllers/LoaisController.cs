@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,13 +22,13 @@ namespace WebAppApi.Controllers
         [HttpGet]
         public IActionResult getAll()
         {
-            var dsLoai = _context.loais.ToList();
+            var dsLoai = _context.Loais.ToList();
             return Ok(dsLoai);
         }
         [HttpGet("{id}")]
-        public IActionResult getByID(Guid id)
+        public IActionResult getByID(int id)
         {
-            var loai = _context.loais.SingleOrDefault(l => l.maLoai == id);
+            var loai = _context.Loais.SingleOrDefault(l => l.MaLoai == id);
             if(loai != null)
             {
                 return Ok(loai);
@@ -39,17 +40,18 @@ namespace WebAppApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Create(LoaiModel model)
         {
             try
             {
                 var loai = new Loai
                 {
-                    tenLoai = model.tenLoai
+                    TenLoai = model.tenLoai
                 };
                 _context.Add(loai);
                 _context.SaveChanges();
-                return Ok(loai);
+                return StatusCode(StatusCodes.Status201Created, loai);
             }
             catch
             {
@@ -58,13 +60,14 @@ namespace WebAppApi.Controllers
             }
 
         }
+
         [HttpPut("{id}")]
-        public IActionResult UpdateByID(Guid id, LoaiModel model)
+        public IActionResult UpdateByID(int id, LoaiModel model)
         {
-            var loai = _context.loais.SingleOrDefault(l => l.maLoai == id);
+            var loai = _context.Loais.SingleOrDefault(l => l.MaLoai == id);
             if (loai != null)
             {
-                loai.tenLoai = model.tenLoai;
+                loai.TenLoai = model.tenLoai;
                 _context.SaveChanges();
                 return Ok(loai);
             }
@@ -72,6 +75,22 @@ namespace WebAppApi.Controllers
             {
                 return NotFound();
             }
-        }   
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var loai = _context.Loais.SingleOrDefault(l => l.MaLoai == id);
+            if (loai != null)
+            {
+                _context.Remove(loai);
+                _context.SaveChanges();
+                return StatusCode(StatusCodes.Status200OK);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }

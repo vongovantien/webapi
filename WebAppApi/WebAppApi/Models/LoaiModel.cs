@@ -10,6 +10,8 @@ namespace WebAppApi.Models
     {
         [Required]
         [MaxLength(50)]
+
+        public int maLoai { get; set; }
         public string tenLoai { get; set; }
     }
 }

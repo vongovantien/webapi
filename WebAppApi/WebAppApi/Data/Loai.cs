@@ -13,10 +13,10 @@ namespace WebAppApi.Data
     public class Loai
     {
         [Key]
-        public Guid maLoai { get; set; }
+        public int MaLoai { get; set; }
         [Required]
         [MaxLength(50)]
-        public string tenLoai { get;set; }
+        public string TenLoai { get;set; }
         public virtual ICollection<Hanghoa> Hanghoas { get; set; }
     }
 }

@@ -7,14 +7,14 @@ namespace WebAppApi.Data
 {
     public class ChiTietDonHang
     {
-        public Guid maHangHoa { get; set; }
-        public Guid maDonhang { get; set; }
-        public double soLuong { get; set; }
-        public double thanhTien {get; set; }
-        public double donGia { get; set; }
-        public byte giamGia { get; set; }
-        public string mieuTa { get; set; }
-        public Hanghoa hangHoa { get; set; }
-        public DonHang donHang { get; set; }
+        public int MaHangHoa { get; set; }
+        public int MaDonhang { get; set; }
+        public double SoLuong { get; set; }
+        public double ThanhTien {get; set; }
+        public double DonGia { get; set; }
+        public byte GiamGia { get; set; }
+        public string MieuTa { get; set; }
+        public Hanghoa HangHoa { get; set; }
+        public DonHang DonHang { get; set; }
     }
 }

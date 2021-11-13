@@ -11,24 +11,24 @@ namespace WebAppApi.Data
     public class Hanghoa
     {
         [Key]
-        public Guid maHangHoa { get; set; }
+        public int MaHangHoa { get; set; }
         [Required]
         [MaxLength(100)]
         
-        public string tenHangHoa { get; set; }
-        public string moTa { get; set; }
+        public string TenHangHoa { get; set; }
+        public string MoTa { get; set; }
         [Range(0, double.MaxValue)]
-        public double donGia { get; set; }
-        public byte giamGia { get; set; }
-        public Guid? maLoai { get; set; }
+        public double DonGia { get; set; }
+        public byte GiamGia { get; set; }
+        public int? MaLoai { get; set; }
         [ForeignKey("maLoai")]
-        public Loai loai { get; set; }
+        public Loai Loai { get; set; }
 
-        public IList<ChiTietDonHang> chiTietDonHangs { get; set; }
+        public IList<ChiTietDonHang> ChiTietDonHangs { get; set; }
 
         public Hanghoa()
         {
-            chiTietDonHangs = new List<ChiTietDonHang>();
+            ChiTietDonHangs = new List<ChiTietDonHang>();
         }
     }
 }

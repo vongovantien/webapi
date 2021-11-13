@@ -25,9 +25,9 @@ namespace WebAppApi.Controllers
         {
             var hangHoa = new Hanghoa1
             {
-                maHangHoa = Guid.NewGuid(),
-                name = hanghoa1.name,
-                donGia = hanghoa1.donGia
+                MaHangHoa = Guid.NewGuid(),
+                Name = hanghoa1.Name,
+                DonGia = hanghoa1.DonGia
             };
             hangHoas.Add(hangHoa);
             return Ok(new
@@ -41,7 +41,7 @@ namespace WebAppApi.Controllers
         public IActionResult GetById(string id)
         {
             try {
-                var hangHoa = hangHoas.SingleOrDefault(hh => hh.maHangHoa == Guid.Parse(id));
+                var hangHoa = hangHoas.SingleOrDefault(hh => hh.MaHangHoa == Guid.Parse(id));
                 if (hangHoa == null)
                 {
                     return NotFound();
@@ -58,7 +58,7 @@ namespace WebAppApi.Controllers
         {
             try
             {
-                var hangHoa = hangHoas.SingleOrDefault(hh => hh.maHangHoa == Guid.Parse(id));
+                var hangHoa = hangHoas.SingleOrDefault(hh => hh.MaHangHoa == Guid.Parse(id));
                 if (hangHoa == null)
                 {
                     return NotFound();
@@ -68,8 +68,8 @@ namespace WebAppApi.Controllers
                     return BadRequest();
                 }
                 // Sua hang hoa
-                hangHoa.name = hangHoaEdit.name;
-                hangHoa.donGia = hangHoaEdit.donGia;
+                hangHoa.name = hangHoaEdit.Name;
+                hangHoa.donGia = hangHoaEdit.DonGia;
                 return Ok(hangHoa);
             }
             catch
@@ -83,7 +83,7 @@ namespace WebAppApi.Controllers
         {
             try
             {
-                var hangHoa = hangHoas.SingleOrDefault(hh => hh.maHangHoa == Guid.Parse(id));
+                var hangHoa = hangHoas.SingleOrDefault(hh => hh.MaHangHoa == Guid.Parse(id));
                 if (hangHoa == null)
                 {
                     return NotFound();

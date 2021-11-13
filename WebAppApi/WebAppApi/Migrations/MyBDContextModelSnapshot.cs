@@ -21,63 +21,64 @@ namespace WebAppApi.Migrations
 
             modelBuilder.Entity("WebAppApi.Data.ChiTietDonHang", b =>
                 {
-                    b.Property<Guid>("maDonhang")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("MaDonhang")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("maHangHoa")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("MaHangHoa")
+                        .HasColumnType("int");
 
-                    b.Property<double>("donGia")
+                    b.Property<double>("DonGia")
                         .HasColumnType("float");
 
-                    b.Property<byte>("giamGia")
+                    b.Property<byte>("GiamGia")
                         .HasColumnType("tinyint");
 
-                    b.Property<string>("mieuTa")
+                    b.Property<string>("MieuTa")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("soLuong")
+                    b.Property<double>("SoLuong")
                         .HasColumnType("float");
 
-                    b.Property<double>("thanhTien")
+                    b.Property<double>("ThanhTien")
                         .HasColumnType("float");
 
-                    b.HasKey("maDonhang", "maHangHoa");
+                    b.HasKey("MaDonhang", "MaHangHoa");
 
-                    b.HasIndex("maHangHoa");
+                    b.HasIndex("MaHangHoa");
 
                     b.ToTable("ChiTietDonHang");
                 });
 
             modelBuilder.Entity("WebAppApi.Data.DonHang", b =>
                 {
-                    b.Property<Guid>("maDonhang")
+                    b.Property<int>("MaDonhang")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("diaChiGiaoHang")
+                    b.Property<string>("DiaChiGiaoHang")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ngayDatHang")
+                    b.Property<DateTime>("NgayDatHang")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getutcdate()");
 
-                    b.Property<DateTime?>("ngayGiaoHang")
+                    b.Property<DateTime?>("NgayGiaoHang")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("nguoiNhan")
+                    b.Property<string>("NguoiNhan")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("soDienThoai")
+                    b.Property<string>("SoDienThoai")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("tinhTrangDonHang")
+                    b.Property<int>("TinhTrangDonHang")
                         .HasColumnType("int");
 
-                    b.HasKey("maDonhang");
+                    b.HasKey("MaDonhang");
 
-                    b.HasIndex("maDonhang")
+                    b.HasIndex("MaDonhang")
                         .IsUnique();
 
                     b.ToTable("DonHang");
@@ -85,28 +86,32 @@ namespace WebAppApi.Migrations
 
             modelBuilder.Entity("WebAppApi.Data.Hanghoa", b =>
                 {
-                    b.Property<Guid>("maHangHoa")
+                    b.Property<int>("MaHangHoa")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("donGia")
+                    b.Property<double>("DonGia")
                         .HasColumnType("float");
 
-                    b.Property<byte>("giamGia")
+                    b.Property<byte>("GiamGia")
                         .HasColumnType("tinyint");
 
-                    b.Property<Guid?>("maLoai")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("MaLoai")
+                        .HasColumnType("int");
 
-                    b.Property<string>("moTa")
+                    b.Property<string>("MoTa")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("tenHangHoa")
+                    b.Property<string>("TenHangHoa")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("maHangHoa");
+                    b.Property<int?>("maLoai")
+                        .HasColumnType("int");
+
+                    b.HasKey("MaHangHoa");
 
                     b.HasIndex("maLoai");
 
@@ -115,58 +120,59 @@ namespace WebAppApi.Migrations
 
             modelBuilder.Entity("WebAppApi.Data.Loai", b =>
                 {
-                    b.Property<Guid>("maLoai")
+                    b.Property<int>("MaLoai")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("tenLoai")
+                    b.Property<string>("TenLoai")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("maLoai");
+                    b.HasKey("MaLoai");
 
                     b.ToTable("Loai");
                 });
 
             modelBuilder.Entity("WebAppApi.Data.ChiTietDonHang", b =>
                 {
-                    b.HasOne("WebAppApi.Data.DonHang", "donHang")
-                        .WithMany("chiTietDonHangs")
-                        .HasForeignKey("maDonhang")
+                    b.HasOne("WebAppApi.Data.DonHang", "DonHang")
+                        .WithMany("ChiTietDonHangs")
+                        .HasForeignKey("MaDonhang")
                         .HasConstraintName("FK_CTDH_DonHang")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebAppApi.Data.Hanghoa", "hangHoa")
-                        .WithMany("chiTietDonHangs")
-                        .HasForeignKey("maHangHoa")
+                    b.HasOne("WebAppApi.Data.Hanghoa", "HangHoa")
+                        .WithMany("ChiTietDonHangs")
+                        .HasForeignKey("MaHangHoa")
                         .HasConstraintName("FK_CTDH_HangHoa")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("donHang");
+                    b.Navigation("DonHang");
 
-                    b.Navigation("hangHoa");
+                    b.Navigation("HangHoa");
                 });
 
             modelBuilder.Entity("WebAppApi.Data.Hanghoa", b =>
                 {
-                    b.HasOne("WebAppApi.Data.Loai", "loai")
+                    b.HasOne("WebAppApi.Data.Loai", "Loai")
                         .WithMany("Hanghoas")
                         .HasForeignKey("maLoai");
 
-                    b.Navigation("loai");
+                    b.Navigation("Loai");
                 });
 
             modelBuilder.Entity("WebAppApi.Data.DonHang", b =>
                 {
-                    b.Navigation("chiTietDonHangs");
+                    b.Navigation("ChiTietDonHangs");
                 });
 
             modelBuilder.Entity("WebAppApi.Data.Hanghoa", b =>
                 {
-                    b.Navigation("chiTietDonHangs");
+                    b.Navigation("ChiTietDonHangs");
                 });
 
             modelBuilder.Entity("WebAppApi.Data.Loai", b =>
